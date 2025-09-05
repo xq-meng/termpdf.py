@@ -1132,8 +1132,9 @@ def bib_from_field(field,regex):
 def bib_from_key(citekeys):
     
     field = '$key'
-    regex = '\|'.join(citekeys)
-    regex = '^' + regex + '$'
+    keys = [k for k in citekeys if k]
+    regex = '|'.join(keys)
+    regex = '^(' + regex + ')$'
     return bib_from_field(field,regex)
 
 def citekey_from_path(path):
@@ -1855,6 +1856,6 @@ def main(args=sys.argv):
 
 if __name__ == '__main__':
     #logging.basicConfig(filename='termpdf.log',level=logging.DEBUG)
-    logging.basicConfig(filename='termpdf.log',level=logging.WARNING)
+    #logging.basicConfig(filename='termpdf.log',level=logging.WARNING)
     main()
 
